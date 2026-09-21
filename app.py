@@ -34,3 +34,12 @@ def get_text_chunks(text, model_name):
     chunks=text_splitter.split_text(text)
     return chunks
 
+# embedding this chunks and storing them in a vector store :
+def get_vectore_store(text_chunks, model_name, api_key=None):
+    if model_name=="Google AI":
+        embeddings=GoogleGenerativeAIEmbeddings(model='model/embedding-001', google_api_key=api_key)
+    vectore_store=FAISS.from_texts(text_chunks, embedding=embeddings)
+    vectore_store.save_local("faiss_index")
+    return vectore_store
+
+#
