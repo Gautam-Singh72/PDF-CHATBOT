@@ -27,3 +27,10 @@ def get_pdf_text(pdf_docs):
             text += page.extract_text
     return text
 
+#to get chunks from text:
+def get_text_chunks(text, model_name):
+    if model_name=="Google AI":
+        text_splitter=RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=700)
+    chunks=text_splitter.split_text(text)
+    return chunks
+
