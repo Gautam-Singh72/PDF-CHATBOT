@@ -78,4 +78,55 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
         pdf_names=[pdf.name for pdf in pdf_docs] if pdf_docs else []
         conversation_history.append((user_question_output, response_output, model_name, datetime.now().strftime
         ('%Y-%m-%d %H:%M:%S'),",".join(pdf_names)))
-        
+
+    st.markdown(
+        f"""
+        <style>
+            .chat-message {{
+                padding: 1.5rem;
+                border-radius: 0.5rem;
+                margin-bottom: 1rem;
+                display: flex;
+            }}
+            .chat-message.user {{
+                background-color: #2b313e;
+            }}
+            .chat-message.bot {{
+                background-color: #475063;
+            }}
+            .chat-message .avatar {{
+                width: 20%;
+            }}
+            .chat-message .avatar img {{
+                max-width: 78px;
+                max-height: 78px;
+                border-radius: 50%;
+                object-fit: cover;
+            }}
+            .chat-message .message {{
+                width: 80%;
+                padding: 0 1.5rem;
+                color: #fff;
+            }}
+            .chat-message .info {{
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+                color: #ccc;
+            }}
+        </style>
+        <div class="chat-message user">
+            <div class="avatar">
+                <img src="https://i.ibb.co/CKpTnWr/user-icon-2048x2048-ihoxz4vq.png">
+            </div>    
+            <div class="message">{user_question_output}</div>
+        </div>
+        <div class="chat-message bot">
+            <div class="avatar">
+                <img src="https://i.ibb.co/wNmYHsx/langchain-logo.webp" >
+            </div>
+            <div class="message">{response_output}</div>
+            </div>
+            
+        """,
+        unsafe_allow_html=True
+    )
