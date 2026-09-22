@@ -130,3 +130,29 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
         """,
         unsafe_allow_html=True
     )
+
+    # <div class="info" style="margin-left: 20px;">Timestamp: {datetime.now()}</div>
+    # <div class="info" style="margin-left: 20px;">PDF Name: {", ".join(pdf_names)}</div>
+    if len(conversation_history) == 1:
+        conversation_history = []
+    elif len(conversation_history) > 1 :
+        last_item = conversation_history[-1]  
+        conversation_history.remove(last_item) 
+    for question, answer, model_name, timestamp, pdf_name in reversed(conversation_history):
+        st.markdown(
+            f"""
+            <div class="chat-message user">
+                <div class="avatar">
+                    <img src="https://i.ibb.co/CKpTnWr/user-icon-2048x2048-ihoxz4vq.png">
+                </div>    
+                <div class="message">{question}</div>
+            </div>
+            <div class="chat-message bot">
+                <div class="avatar">
+                    <img src="https://i.ibb.co/wNmYHsx/langchain-logo.webp" >
+                </div>
+                <div class="message">{answer}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
