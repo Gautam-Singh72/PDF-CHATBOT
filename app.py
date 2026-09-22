@@ -24,7 +24,9 @@ def get_pdf_text(pdf_docs):
     for pdf in pdf_docs:
         pdf_reader=PdfReader(pdf)
         for page in pdf_reader.pages:
-            text += page.extract_text
+            extracted_text = page.extract_text()
+            if extracted_text:
+                text+=extracted_text
     return text
 
 #to get chunks from text:
@@ -37,7 +39,7 @@ def get_text_chunks(text, model_name):
 # embedding this chunks and storing them in a vector store :
 def get_vectore_store(text_chunks, model_name, api_key=None):
     if model_name=="Google AI":
-        embeddings=GoogleGenerativeAIEmbeddings(model='model/embedding-001', google_api_key=api_key)
+        embeddings=GoogleGenerativeAIEmbeddings(model='gemini-embedding-001', google_api_key=api_key)
     vectore_store=FAISS.from_texts(text_chunks, embedding=embeddings)
     vectore_store.save_local("faiss_index")
     return vectore_store
@@ -57,6 +59,7 @@ def get_conversational_chain(model_name, vectorstore=None, api_key=None):
         model= ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0.3, google_api_key=api_key)
         prompt=PromptTemplate(template=prompt_template, input_variables=["context", "question"])
         chain=load_qa_chain(model, chain_type="stuff", prompt=prompt)
+        return chain
 
 # take user input
 def user_input(user_question, model_name, api_key, pdf_docs, conversation_history):
@@ -68,7 +71,7 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
     user_question_output=""
     response_output=""
     if model_name=="Google AI":
-        embeddings=GoogleGenerativeAIEmbeddings(model='model/embedding-001', google_api_key=api_key)
+        embeddings=GoogleGenerativeAIEmbeddings(model='gemini-embedding-001', google_api_key=api_key)
         new_db=FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
         docs=new_db.similarity_search(user_question)
         chain=get_conversational_chain("Google AI", vectorstore=new_db, api_key=api_key)
