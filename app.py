@@ -42,4 +42,18 @@ def get_vectore_store(text_chunks, model_name, api_key=None):
     vectore_store.save_local("faiss_index")
     return vectore_store
 
-#
+#create a conversational chain using langchain
+def get_conversational_chain(model_name, vectorstore=None, api_key=None):
+    if model_name=="Google AI":
+        prompt_template="""
+               Answer the question in a clear and concise way from the provided context, make sure to provide
+               all details with proper structure, if the answer is not in the provided context just say, "answer
+               is not available in the context", don't provide the wrong answer.\n\n 
+               context:\n {context}?\n
+               Question:\n {question}?\n
+
+               Answer:    
+            """
+        model= ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0.3, google_api_key=api_key)
+        prompt=PromptTemplate(template=prompt_template, input_variables=["context", "question"])
+        chain=load_qa_chain(model, chain_type="stuff", prompt=prompt)
