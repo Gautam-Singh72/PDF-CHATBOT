@@ -156,3 +156,14 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
             """,
             unsafe_allow_html=True
         )
+
+    if len(st.session_state.conversation_history) > 0:
+        df = pd.DataFrame(st.session_state.conversation_history, columns=["Question", "Answer", "Model", "Timestamp", "PDF Name"])
+
+        # df = pd.DataFrame(st.session_state.conversation_history, columns=["Question", "Answer", "Timestamp", "PDF Name"])
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()  # Convert to base64
+        href = f'<a href="data:file/csv;base64,{b64}" download="conversation_history.csv"><button>Download conversation history as CSV file</button></a>'
+        st.sidebar.markdown(href, unsafe_allow_html=True)
+        st.markdown("To download the conversation, click the Download button on the left side at the bottom of the conversation.")
+    st.snow()
