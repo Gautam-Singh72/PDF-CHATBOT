@@ -122,7 +122,7 @@ PDF_CHAT_BOT/
 ├── venv/
 ├── .env
 └── screenshots/
-    └── chatbot-interface.png
+    └── chatBot_Interface.png
 ```
 
 ### Key files
@@ -280,11 +280,7 @@ The following are realistic planned or potential enhancements for future iterati
 
 ## 📸 Screenshots
 
- screenshots of the interface of the project:
-
-```markdown
 ![PDF Chatbot Interface](screenshots/chatBot_Interface.png)
-```
 
 ## 📈 Learning Outcomes
 
