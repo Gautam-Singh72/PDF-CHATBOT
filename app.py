@@ -146,13 +146,13 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
             f"""
             <div class="chat-message user">
                 <div class="avatar">
-                    <img src="https://i.ibb.co/CKpTnWr/user-icon-2048x2048-ihoxz4vq.png">
+                    <img src="images/9187604.png">
                 </div>    
                 <div class="message">{question}</div>
             </div>
             <div class="chat-message bot">
                 <div class="avatar">
-                    <img src="https://i.ibb.co/wNmYHsx/langchain-logo.webp" >
+                    <img src="images/langchain-logo.webp" >
                 </div>
                 <div class="message">{answer}</div>
             </div>

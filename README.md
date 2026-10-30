@@ -317,9 +317,9 @@ This repository does not currently include a license file. Before publishing pub
 
 ## 👨‍💻 Author
 
-- GitHub: [Your GitHub]
-- LinkedIn: [Your LinkedIn]
-- Email: [Your Email]
+- GitHub: [https://github.com/Gautam-Singh72]
+- LinkedIn: [https://www.linkedin.com/in/gautam-singh-334067295/]
+- Email: [gautamsinghcp.77@gmail.com]
 
 ---
 
