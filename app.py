@@ -83,53 +83,67 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
         ('%Y-%m-%d %H:%M:%S'),",".join(pdf_names)))
 
     st.markdown(
-        f"""
+        """
         <style>
-            .chat-message {{
+            .chat-message {
                 padding: 1.5rem;
                 border-radius: 0.5rem;
                 margin-bottom: 1rem;
                 display: flex;
-            }}
-            .chat-message.user {{
+            }
+            .chat-message.user {
                 background-color: #2b313e;
-            }}
-            .chat-message.bot {{
+            }
+            .chat-message.bot {
                 background-color: #475063;
-            }}
-            .chat-message .avatar {{
-                width: 20%;
-            }}
-            .chat-message .avatar img {{
-                max-width: 78px;
-                max-height: 78px;
+            }
+            .chat-message .avatar {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
                 border-radius: 50%;
-                object-fit: cover;
-            }}
-            .chat-message .message {{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #687386;
+            }
+            .chat-message.bot .avatar {
+                background-color: #138a72;
+            }
+            .chat-message .avatar svg {
+                width: 24px;
+                height: 24px;
+                fill: #fff;
+            }
+            .chat-message .message {
                 width: 80%;
                 padding: 0 1.5rem;
                 color: #fff;
-            }}
-            .chat-message .info {{
+            }
+            .chat-message .info {
                 font-size: 0.8rem;
                 margin-top: 0.5rem;
                 color: #ccc;
-            }}
+            }
         </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        f"""
         <div class="chat-message user">
             <div class="avatar">
-                <img src="https://i.ibb.co/CKpTnWr/user-icon-2048x2048-ihoxz4vq.png">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.24-8 5v2h16v-2c0-2.76-3.58-5-8-5Z"/></svg>
             </div>    
             <div class="message">{user_question_output}</div>
         </div>
         <div class="chat-message bot">
             <div class="avatar">
-                <img src="https://i.ibb.co/wNmYHsx/langchain-logo.webp" >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.25 7.75L22 12l-7.75 2.25L12 22l-2.25-7.75L2 12l7.75-2.25L12 2Zm7 1 .8 2.2L22 6l-2.2.8L19 9l-.8-2.2L16 6l2.2-.8L19 3Z"/></svg>
             </div>
             <div class="message">{response_output}</div>
             </div>
-            
         """,
         unsafe_allow_html=True
     )
@@ -146,13 +160,13 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
             f"""
             <div class="chat-message user">
                 <div class="avatar">
-                    <img src="images/9187604.png">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.24-8 5v2h16v-2c0-2.76-3.58-5-8-5Z"/></svg>
                 </div>    
                 <div class="message">{question}</div>
             </div>
             <div class="chat-message bot">
                 <div class="avatar">
-                    <img src="images/langchain-logo.webp" >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.25 7.75L22 12l-7.75 2.25L12 22l-2.25-7.75L2 12l7.75-2.25L12 2Zm7 1 .8 2.2L22 6l-2.2.8L19 9l-.8-2.2L16 6l2.2-.8L19 3Z"/></svg>
                 </div>
                 <div class="message">{answer}</div>
             </div>
@@ -169,7 +183,6 @@ def user_input(user_question, model_name, api_key, pdf_docs, conversation_histor
         href = f'<a href="data:file/csv;base64,{b64}" download="conversation_history.csv"><button>Download conversation history as CSV file</button></a>'
         st.sidebar.markdown(href, unsafe_allow_html=True)
         st.markdown("To download the conversation, click the Download button on the left side at the bottom of the conversation.")
-    st.snow()
 
 # main entry point function
 def main():

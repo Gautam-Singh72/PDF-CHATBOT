@@ -280,10 +280,10 @@ The following are realistic planned or potential enhancements for future iterati
 
 ## 📸 Screenshots
 
-Add screenshots of the interface here as the project evolves:
+ screenshots of the interface of the project:
 
 ```markdown
-![PDF Chatbot Interface](screenshots/chatbot-interface.png)
+![PDF Chatbot Interface](screenshots/chatBot_Interface.png)
 ```
 
 ## 📈 Learning Outcomes
